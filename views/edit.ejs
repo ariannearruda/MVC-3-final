@@ -1,0 +1,9 @@
+<%- include('partials/header') %>
+
+<h1>Editar Produto</h1>
+<form action="/produtos/update/<%= produto._id %>" method="POST">
+    <input type="text" name="nome" value="<%= produto.nome %>" required>
+    <button type="submit">Salvar</button>
+</form>
+
+<%- include('partials/footer') %>

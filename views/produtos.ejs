@@ -1,0 +1,33 @@
+<%- include('partials/header') %> <!-- Inclui o cabeçalho padrão -->
+
+<h1>Lista de Produtos</h1> <!-- Título da página -->
+<p>Gerencie seus itens abaixo — adicione, edite ou exclua conforme quiser.</p> <!-- Subtexto -->
+
+<!-- Formulário para adicionar produto -->
+<form action="/produtos/add" method="POST">
+    <input type="text" name="nome" placeholder="Digite o nome do produto" required>
+    <button type="submit">Adicionar</button>
+</form>
+
+<!-- Lista de produtos -->
+<ul>
+    <% if (produtos.length === 0) { %>
+        <li>Nenhum produto cadastrado ainda. Comece adicionando um! 🚀</li>
+    <% } else { %>
+        <% produtos.forEach(produto => { %>
+            <li>
+                <strong><%= produto.nome %></strong>
+                
+                <!-- Botão de editar -->
+                <a href="/produtos/edit/<%= produto._id %>" class="btn btn-sm btn-warning">Editar</a>
+                
+                <!-- Botão de deletar -->
+                <form action="/produtos/delete/<%= produto._id %>" method="POST" style="display:inline;">
+                    <button type="submit" class="excluir">Excluir</button>
+                </form>
+            </li>
+        <% }) %>
+    <% } %>
+</ul>
+
+<%- include('partials/footer') %> <!-- Inclui o rodapé padrão -->
